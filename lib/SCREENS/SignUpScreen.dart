@@ -1,19 +1,20 @@
-import 'package:cruise_blade/SCREENS/SignUpScreen.dart';
-import 'package:cruise_blade/WIDGETS/BigTextWidget.dart';
-import 'package:cruise_blade/WIDGETS/SignInPageTextFields.dart';
+import 'package:cruise_blade/WIDGETS/SignUpPageTextFields.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+import '../WIDGETS/BigTextWidget.dart';
+
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController emaliController = TextEditingController();
+class _SignUpScreenState extends State<SignUpScreen> {
+  TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController userNameController = TextEditingController();
   bool checked = false;
   void checkChanger() {
     setState(() {
@@ -22,22 +23,12 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    emaliController.text = "";
-    passwordController.text = "";
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    emaliController.dispose();
-    passwordController.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+      ),
       resizeToAvoidBottomInset: false,
       extendBodyBehindAppBar: true,
       extendBody: true,
@@ -71,7 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     BigTextWidget(
                       fontSize: 27,
-                      text: "Sign In",
+                      text: "Sign Up",
                       color: Colors.white,
                       textOverflow: TextOverflow.visible,
                       textAlign: TextAlign.start,
@@ -83,38 +74,16 @@ class _LoginScreenState extends State<LoginScreen> {
                           ? MediaQuery.of(context).size.height * 0.02
                           : MediaQuery.of(context).size.height * 0.06,
                     ),
-                    SignInPageTextFields(
-                      emaileditingController: emaliController,
-                      passwordeditingController: passwordController,
-                      emailHintTextFontSize: 19,
-                      passwordHintTextFontSize: 19,
-                    ),
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-                    Container(
+                    SignUpPageTextFields(
+                        emailHintTextFontSize: 19,
+                        passwordeditingController: passwordController,
+                        userNameController: userNameController,
+                        emailController: emailController),
+                    SizedBox(
                       height: MediaQuery.of(context).orientation ==
                               Orientation.portrait
-                          ? MediaQuery.of(context).size.height * 0.06
-                          : MediaQuery.of(context).size.height * 0.12,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(
-                          12,
-                        ),
-                        gradient: const LinearGradient(
-                          colors: [
-                            Colors.blue,
-                            Colors.deepPurple,
-                          ],
-                        ),
-                      ),
-                      alignment: Alignment.center,
-                      child: BigTextWidget(
-                        fontSize: 22,
-                        text: "Sign In",
-                        color: Colors.white,
-                        textOverflow: TextOverflow.visible,
-                        textAlign: TextAlign.center,
-                        fontWeight: FontWeight.w700,
-                      ),
+                          ? MediaQuery.of(context).size.height * 0.02
+                          : MediaQuery.of(context).size.height * 0.06,
                     ),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -141,9 +110,36 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                     Container(
+                      height: MediaQuery.of(context).orientation ==
+                              Orientation.portrait
+                          ? MediaQuery.of(context).size.height * 0.06
+                          : MediaQuery.of(context).size.height * 0.12,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(
+                          12,
+                        ),
+                        gradient: const LinearGradient(
+                          colors: [
+                            Colors.blue,
+                            Colors.deepPurple,
+                          ],
+                        ),
+                      ),
+                      alignment: Alignment.center,
+                      child: BigTextWidget(
+                        fontSize: 22,
+                        text: "Sign Up",
+                        color: Colors.white,
+                        textOverflow: TextOverflow.visible,
+                        textAlign: TextAlign.center,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                    Container(
                       alignment: Alignment.center,
                       child: const Text(
-                        "Or Sign In With",
+                        "Or Sign Up With",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 22,
@@ -186,53 +182,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     MediaQuery.of(context).orientation == Orientation.portrait
                         ? MediaQuery.of(context).size.height * 0.03
                         : MediaQuery.of(context).size.height * 0.07,
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  BigTextWidget(
-                    fontSize: 20,
-                    text: "Dont't Have An Account",
-                    color: Colors.white,
-                    textOverflow: TextOverflow.visible,
-                    textAlign: TextAlign.start,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return const SignUpScreen();
-                          },
-                        ),
-                      );
-                    },
-                    child: Container(
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(
-                          12,
-                        ),
-                        color: Colors.blue,
-                      ),
-                      height: MediaQuery.of(context).orientation ==
-                              Orientation.portrait
-                          ? MediaQuery.of(context).size.height * 0.05
-                          : MediaQuery.of(context).size.height * 0.12,
-                      width: MediaQuery.of(context).size.width * 0.30,
-                      child: BigTextWidget(
-                        fontSize: 20,
-                        text: "Create One",
-                        color: Colors.white,
-                        textOverflow: TextOverflow.visible,
-                        textAlign: TextAlign.center,
-                        fontWeight: FontWeight.w800,
-                      ),
-                    ),
-                  ),
-                ],
               ),
               SizedBox(
                 height:

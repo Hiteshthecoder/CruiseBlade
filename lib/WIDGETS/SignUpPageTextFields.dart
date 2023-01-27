@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 
-class SignInPageTextFields extends StatefulWidget {
-  SignInPageTextFields({
+class SignUpPageTextFields extends StatefulWidget {
+  SignUpPageTextFields({
     super.key,
     required this.emailHintTextFontSize,
-    required this.passwordHintTextFontSize,
-    required this.emaileditingController,
     required this.passwordeditingController,
+    required this.userNameController,
+    required this.emailController,
   });
   double emailHintTextFontSize;
-  double passwordHintTextFontSize;
-  TextEditingController emaileditingController;
   TextEditingController passwordeditingController;
+  TextEditingController userNameController;
+  TextEditingController emailController;
   @override
-  State<SignInPageTextFields> createState() => _SignInPageTextFieldsState();
+  State<SignUpPageTextFields> createState() => _SignUpPageTextFieldsState();
 }
 
-class _SignInPageTextFieldsState extends State<SignInPageTextFields> {
+class _SignUpPageTextFieldsState extends State<SignUpPageTextFields> {
   bool visible = false;
   void visiblityChanger() {
     setState(() {
@@ -31,7 +31,7 @@ class _SignInPageTextFieldsState extends State<SignInPageTextFields> {
       mainAxisSize: MainAxisSize.min,
       children: [
         TextField(
-          controller: widget.emaileditingController,
+          controller: widget.emailController,
           style: const TextStyle(
             color: Colors.white,
           ),
@@ -41,6 +41,30 @@ class _SignInPageTextFieldsState extends State<SignInPageTextFields> {
               color: Colors.white,
             ),
             hintText: "Enter Emai",
+            hintStyle: const TextStyle(color: Colors.white),
+            filled: true,
+            fillColor: Colors.black.withOpacity(0.30),
+            isDense: true,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide.none,
+            ),
+          ),
+        ),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.015,
+        ),
+        TextField(
+          controller: widget.userNameController,
+          style: const TextStyle(
+            color: Colors.white,
+          ),
+          decoration: InputDecoration(
+            prefixIcon: const Icon(
+              Icons.email_rounded,
+              color: Colors.white,
+            ),
+            hintText: "Enter UserName",
             hintStyle: const TextStyle(color: Colors.white),
             filled: true,
             fillColor: Colors.black.withOpacity(0.30),
