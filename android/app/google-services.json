@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "124467887634",
+    "project_id": "cruiseblaze",
+    "storage_bucket": "cruiseblaze.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:124467887634:android:4fdaf609af0a05e06ea2cb",
+        "android_client_info": {
+          "package_name": "com.example.cruise_blade"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "124467887634-d76kvqmeimu4o63iduevvuu1979gp3os.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cruise_blade",
+            "certificate_hash": "c7d136f97ecc5c933f5d3083d3837b10ae73221c"
+          }
+        },
+        {
+          "client_id": "124467887634-5caaqb29ji20gbvk872lrkl17u9q3r6k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1AzrKoEfPLeYY0Ijx7o7Mcf9lHBuMO4I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "124467887634-5caaqb29ji20gbvk872lrkl17u9q3r6k.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "124467887634-gfuqvs4q1rilp1us6iadtn6iqps7us72.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.cruiseBlade"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
