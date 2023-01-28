@@ -4,8 +4,11 @@ import 'package:cruise_blade/WIDGETS/LANDING_PAGE_WIDGETS/MOVIES_CATEGORIES/Movi
 import 'package:cruise_blade/WIDGETS/LANDING_PAGE_WIDGETS/NOW_PLAYING/NowPlayingMoviesWidget.dart';
 import 'package:cruise_blade/WIDGETS/LANDING_PAGE_WIDGETS/PREMIERE_CATEGORIES/Premiere_Movies_Widget.dart';
 import 'package:cruise_blade/WIDGETS/LANDING_PAGE_WIDGETS/TOP_PORTION/TopPotion.dart';
+import 'package:cruise_blade/WIDGETS/LANDING_PAGE_WIDGETS/UPCOMING_MOVIES_SECTION/UpComingMoviesWidget.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class LandingPage extends StatefulWidget {
@@ -16,12 +19,6 @@ class LandingPage extends StatefulWidget {
 }
 
 class _LandingPageState extends State<LandingPage> {
-  @override
-  void initState() {
-    super.initState();
-    getUserData();
-  }
-
   String userName = "";
   Future getUserData() async {
     DocumentSnapshot userData = await FirebaseFirestore.instance
@@ -36,6 +33,34 @@ class _LandingPageState extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: CurvedNavigationBar(
+        height: 50,
+        color: Colors.deepPurple,
+        backgroundColor: Colors.transparent,
+        buttonBackgroundColor: Colors.transparent,
+        items: const [
+          Icon(
+            FontAwesomeIcons.house,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.category_rounded,
+            color: Colors.white,
+          ),
+          Icon(
+            FontAwesomeIcons.deezer,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.favorite,
+            color: Colors.white,
+          ),
+          Icon(
+            FontAwesomeIcons.user,
+            color: Colors.white,
+          ),
+        ],
+      ),
       resizeToAvoidBottomInset: false,
       extendBodyBehindAppBar: true,
       extendBody: true,
@@ -110,12 +135,14 @@ class _LandingPageState extends State<LandingPage> {
                     padding: MediaQuery.of(context).orientation ==
                             Orientation.portrait
                         ? EdgeInsets.only(
+                            top: MediaQuery.of(context).size.height * 0.02,
                             left: MediaQuery.of(context).size.width * 0.03,
                             bottom: MediaQuery.of(context).size.height * 0.01,
                           )
                         : EdgeInsets.only(
+                            top: MediaQuery.of(context).size.height * 0.03,
                             left: MediaQuery.of(context).size.width * 0.02,
-                            bottom: MediaQuery.of(context).size.height * 0.01,
+                            bottom: MediaQuery.of(context).size.height * 0.02,
                           ),
                     child: BigTextWidget(
                       fontSize: 22,
@@ -128,6 +155,7 @@ class _LandingPageState extends State<LandingPage> {
                   const NowPlayingMoviesWidget(),
                 ],
               ),
+              const UpComingMoviesWidget()
             ],
           ),
         ),

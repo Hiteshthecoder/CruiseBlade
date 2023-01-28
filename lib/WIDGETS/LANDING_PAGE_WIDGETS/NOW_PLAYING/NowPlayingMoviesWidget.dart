@@ -21,7 +21,7 @@ class _NowPlayingMoviesWidgetState extends State<NowPlayingMoviesWidget> {
             ),
       height: MediaQuery.of(context).orientation == Orientation.portrait
           ? MediaQuery.of(context).size.height * 0.18
-          : MediaQuery.of(context).size.height * 0.52,
+          : MediaQuery.of(context).size.height * 0.32,
       decoration: const BoxDecoration(),
       child: ListView.builder(
         scrollDirection: Axis.horizontal,

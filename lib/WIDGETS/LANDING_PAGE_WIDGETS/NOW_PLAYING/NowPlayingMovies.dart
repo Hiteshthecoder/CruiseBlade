@@ -14,10 +14,10 @@ class NowPlayingMovies extends StatelessWidget {
               left: MediaQuery.of(context).size.width * 0.01,
             ),
       width: MediaQuery.of(context).orientation == Orientation.portrait
-          ? MediaQuery.of(context).size.width * 0.46
-          : MediaQuery.of(context).size.width * 0.23,
+          ? MediaQuery.of(context).size.width * 0.32
+          : MediaQuery.of(context).size.width * 0.16,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(8),
         image: const DecorationImage(
           image: NetworkImage(
             "https://images.saymedia-content.com/.image/t_share/MTc0NDgzOTg0NTgxOTI4NTgy/aquaman-review-and-trailer-did-it-try-too-hard.jpg",
