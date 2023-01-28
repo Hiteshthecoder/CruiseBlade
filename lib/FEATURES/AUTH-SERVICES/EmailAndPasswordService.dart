@@ -26,6 +26,17 @@ class EmailAndPasswordAuth {
             .set(
               user.toJson(),
             );
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Colors.black.withOpacity(0.3),
+            content: Text(
+              "User Created",
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+          ),
+        );
       }
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(

@@ -15,6 +15,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController userNameController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    emailController.text = "";
+    passwordController.text = "";
+    userNameController.text = "";
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    userNameController.dispose();
+  }
+
   bool checked = false;
   void checkChanger() {
     setState(() {
@@ -65,7 +82,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       text: "Sign Up",
                       color: Colors.white,
                       textOverflow: TextOverflow.visible,
-                      textAlign: TextAlign.start,
                       fontWeight: FontWeight.bold,
                     ),
                     SizedBox(
@@ -103,7 +119,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           text: "Accept The Terms And Services",
                           color: Colors.black,
                           textOverflow: TextOverflow.visible,
-                          textAlign: TextAlign.center,
                           fontWeight: FontWeight.w800,
                         ),
                       ],
@@ -131,7 +146,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         text: "Sign Up",
                         color: Colors.white,
                         textOverflow: TextOverflow.visible,
-                        textAlign: TextAlign.center,
                         fontWeight: FontWeight.w700,
                       ),
                     ),

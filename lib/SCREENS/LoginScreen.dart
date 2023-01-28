@@ -1,3 +1,4 @@
+import 'package:cruise_blade/FEATURES/AUTH-SERVICES/EmailAndPasswordService.dart';
 import 'package:cruise_blade/SCREENS/SignUpScreen.dart';
 import 'package:cruise_blade/WIDGETS/BigTextWidget.dart';
 import 'package:cruise_blade/WIDGETS/SignInPageTextFields.dart';
@@ -15,11 +16,6 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emaliController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   bool checked = false;
-  void checkChanger() {
-    setState(() {
-      checked = !checked;
-    });
-  }
 
   @override
   void initState() {
@@ -33,6 +29,12 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
     emaliController.dispose();
     passwordController.dispose();
+  }
+
+  void checkChanger() {
+    setState(() {
+      checked = !checked;
+    });
   }
 
   @override
@@ -74,7 +76,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       text: "Sign In",
                       color: Colors.white,
                       textOverflow: TextOverflow.visible,
-                      textAlign: TextAlign.start,
                       fontWeight: FontWeight.bold,
                     ),
                     SizedBox(
@@ -90,30 +91,38 @@ class _LoginScreenState extends State<LoginScreen> {
                       passwordHintTextFontSize: 19,
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-                    Container(
-                      height: MediaQuery.of(context).orientation ==
-                              Orientation.portrait
-                          ? MediaQuery.of(context).size.height * 0.06
-                          : MediaQuery.of(context).size.height * 0.12,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(
-                          12,
+                    GestureDetector(
+                      onTap: () {
+                        EmailAndPasswordAuth().EmailAndPasswordAuthMethod(
+                          context,
+                          email: emaliController.text,
+                          password: passwordController.text,
+                        );
+                      },
+                      child: Container(
+                        height: MediaQuery.of(context).orientation ==
+                                Orientation.portrait
+                            ? MediaQuery.of(context).size.height * 0.06
+                            : MediaQuery.of(context).size.height * 0.12,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(
+                            12,
+                          ),
+                          gradient: const LinearGradient(
+                            colors: [
+                              Colors.blue,
+                              Colors.deepPurple,
+                            ],
+                          ),
                         ),
-                        gradient: const LinearGradient(
-                          colors: [
-                            Colors.blue,
-                            Colors.deepPurple,
-                          ],
+                        alignment: Alignment.center,
+                        child: BigTextWidget(
+                          fontSize: 22,
+                          text: "Sign In",
+                          color: Colors.white,
+                          textOverflow: TextOverflow.visible,
+                          fontWeight: FontWeight.w700,
                         ),
-                      ),
-                      alignment: Alignment.center,
-                      child: BigTextWidget(
-                        fontSize: 22,
-                        text: "Sign In",
-                        color: Colors.white,
-                        textOverflow: TextOverflow.visible,
-                        textAlign: TextAlign.center,
-                        fontWeight: FontWeight.w700,
                       ),
                     ),
                     Row(
@@ -134,7 +143,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           text: "Accept The Terms And Services",
                           color: Colors.black,
                           textOverflow: TextOverflow.visible,
-                          textAlign: TextAlign.center,
                           fontWeight: FontWeight.w800,
                         ),
                       ],
@@ -196,7 +204,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     text: "Dont't Have An Account",
                     color: Colors.white,
                     textOverflow: TextOverflow.visible,
-                    textAlign: TextAlign.start,
                     fontWeight: FontWeight.w500,
                   ),
                   GestureDetector(
@@ -227,7 +234,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         text: "Create One",
                         color: Colors.white,
                         textOverflow: TextOverflow.visible,
-                        textAlign: TextAlign.center,
                         fontWeight: FontWeight.w800,
                       ),
                     ),
