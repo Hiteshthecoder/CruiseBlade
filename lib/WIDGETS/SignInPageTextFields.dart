@@ -17,11 +17,25 @@ class SignInPageTextFields extends StatefulWidget {
 }
 
 class _SignInPageTextFieldsState extends State<SignInPageTextFields> {
+  @override
+  void initState() {
+    super.initState();
+    widget.emaileditingController.text = "";
+    widget.passwordeditingController.text = "";
+  }
+
   bool visible = false;
   void visiblityChanger() {
     setState(() {
       visible = !visible;
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    widget.emaileditingController.dispose();
+    widget.passwordeditingController.dispose();
   }
 
   @override

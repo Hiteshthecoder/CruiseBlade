@@ -1,3 +1,4 @@
+import 'package:cruise_blade/SCREENS/HomeScreen.dart';
 import 'package:cruise_blade/SCREENS/LandingPage.dart';
 import 'package:cruise_blade/SCREENS/LoginScreen.dart';
 import 'package:cruise_blade/firebase_options.dart';
@@ -12,6 +13,7 @@ void main() async {
     await Firebase.initializeApp(options: DefaultFirebaseOptions.web);
     runApp(const MyApp());
   }
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -33,7 +35,7 @@ class MyApp extends StatelessWidget {
               theme: ThemeData(
                 primarySwatch: Colors.blue,
               ),
-              home: const LandingPage(),
+              home: const HomeScreen(),
             );
           }
           if (snapshot.hasError) {
@@ -47,7 +49,7 @@ class MyApp extends StatelessWidget {
             child: CircularProgressIndicator(),
           );
         }
-        return const LoginScreen();
+        return const MaterialApp(home: LoginScreen());
       },
     );
   }

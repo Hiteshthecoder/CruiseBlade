@@ -2,6 +2,7 @@ import 'package:cruise_blade/WIDGETS/SignUpPageTextFields.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../FEATURES/AUTH-SERVICES/EmailAndPasswordService.dart';
 import '../WIDGETS/BigTextWidget.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -15,22 +16,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController userNameController = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-    emailController.text = "";
-    passwordController.text = "";
-    userNameController.text = "";
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    emailController.dispose();
-    passwordController.dispose();
-    userNameController.dispose();
-  }
 
   bool checked = false;
   void checkChanger() {
@@ -91,10 +76,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           : MediaQuery.of(context).size.height * 0.06,
                     ),
                     SignUpPageTextFields(
-                        emailHintTextFontSize: 19,
-                        passwordeditingController: passwordController,
-                        userNameController: userNameController,
-                        emailController: emailController),
+                      emailController: emailController,
+                      passwordeditingController: passwordController,
+                      userNameController: userNameController,
+                      emailHintTextFontSize: 19,
+                    ),
                     SizedBox(
                       height: MediaQuery.of(context).orientation ==
                               Orientation.portrait
@@ -124,29 +110,39 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ],
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-                    Container(
-                      height: MediaQuery.of(context).orientation ==
-                              Orientation.portrait
-                          ? MediaQuery.of(context).size.height * 0.06
-                          : MediaQuery.of(context).size.height * 0.12,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(
-                          12,
+                    GestureDetector(
+                      onTap: () {
+                        EmailAndPasswordAuth().EmailAndPasswordAuthMethod(
+                          context,
+                          email: emailController.text,
+                          password: passwordController.text,
+                          userName: userNameController.text,
+                        );
+                      },
+                      child: Container(
+                        height: MediaQuery.of(context).orientation ==
+                                Orientation.portrait
+                            ? MediaQuery.of(context).size.height * 0.06
+                            : MediaQuery.of(context).size.height * 0.12,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(
+                            12,
+                          ),
+                          gradient: const LinearGradient(
+                            colors: [
+                              Colors.blue,
+                              Colors.deepPurple,
+                            ],
+                          ),
                         ),
-                        gradient: const LinearGradient(
-                          colors: [
-                            Colors.blue,
-                            Colors.deepPurple,
-                          ],
+                        alignment: Alignment.center,
+                        child: BigTextWidget(
+                          fontSize: 22,
+                          text: "Sign Up",
+                          color: Colors.white,
+                          textOverflow: TextOverflow.visible,
+                          fontWeight: FontWeight.w700,
                         ),
-                      ),
-                      alignment: Alignment.center,
-                      child: BigTextWidget(
-                        fontSize: 22,
-                        text: "Sign Up",
-                        color: Colors.white,
-                        textOverflow: TextOverflow.visible,
-                        fontWeight: FontWeight.w700,
                       ),
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.02),

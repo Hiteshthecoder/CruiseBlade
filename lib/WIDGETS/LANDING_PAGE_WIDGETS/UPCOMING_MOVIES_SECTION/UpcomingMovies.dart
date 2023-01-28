@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class UpComingMovies extends StatelessWidget {
@@ -22,7 +23,9 @@ class UpComingMovies extends StatelessWidget {
         ),
         image: const DecorationImage(
           image: NetworkImage(
-            "https://www.istockphoto.com/resources/images/PhotoFTLP/P4-JAN-iStock-1432854572.jpg",
+            kIsWeb
+                ? "https://images.saymedia-content.com/.image/t_share/MTc0NDgzOTg0NTgxOTI4NTgy/aquaman-review-and-trailer-did-it-try-too-hard.jpg"
+                : "https://www.istockphoto.com/resources/images/PhotoFTLP/P4-JAN-iStock-1432854572.jpg",
           ),
           fit: BoxFit.fill,
         ),

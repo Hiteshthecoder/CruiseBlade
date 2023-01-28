@@ -4,24 +4,41 @@ class SignUpPageTextFields extends StatefulWidget {
   SignUpPageTextFields({
     super.key,
     required this.emailHintTextFontSize,
+    required this.emailController,
     required this.passwordeditingController,
     required this.userNameController,
-    required this.emailController,
   });
   double emailHintTextFontSize;
   TextEditingController passwordeditingController;
   TextEditingController userNameController;
   TextEditingController emailController;
+
   @override
   State<SignUpPageTextFields> createState() => _SignUpPageTextFieldsState();
 }
 
 class _SignUpPageTextFieldsState extends State<SignUpPageTextFields> {
   bool visible = false;
+  @override
+  void initState() {
+    super.initState();
+    widget.passwordeditingController.text = "";
+    widget.userNameController.text = "";
+    widget.emailController.text = "";
+  }
+
   void visiblityChanger() {
     setState(() {
       visible = !visible;
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    widget.passwordeditingController.dispose();
+    widget.userNameController.dispose();
+    widget.emailController.dispose();
   }
 
   @override

@@ -17,20 +17,6 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController passwordController = TextEditingController();
   bool checked = false;
 
-  @override
-  void initState() {
-    super.initState();
-    emaliController.text = "";
-    passwordController.text = "";
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    emaliController.dispose();
-    passwordController.dispose();
-  }
-
   void checkChanger() {
     setState(() {
       checked = !checked;
@@ -92,13 +78,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                     GestureDetector(
-                      onTap: () {
-                        EmailAndPasswordAuth().EmailAndPasswordAuthMethod(
-                          context,
-                          email: emaliController.text,
-                          password: passwordController.text,
-                        );
-                      },
                       child: Container(
                         height: MediaQuery.of(context).orientation ==
                                 Orientation.portrait

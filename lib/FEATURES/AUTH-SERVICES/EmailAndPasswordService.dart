@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cruise_blade/FEATURES/MODEL/UserModel.dart' as UserModel;
+import 'package:cruise_blade/SCREENS/HomeScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -26,27 +27,24 @@ class EmailAndPasswordAuth {
             .set(
               user.toJson(),
             );
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) {
+              return const HomeScreen();
+            },
+          ),
+        );
+      } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: Colors.black.withOpacity(0.3),
             content: Text(
-              "User Created",
-              style: TextStyle(
-                color: Colors.white,
-              ),
+              "Email Or Password Or UserName is Empty",
+              style: TextStyle(color: Colors.white),
             ),
           ),
         );
       }
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          backgroundColor: Colors.black.withOpacity(0.3),
-          content: Text(
-            "Email Or Password Or UserName is Empty",
-            style: TextStyle(color: Colors.white),
-          ),
-        ),
-      );
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
