@@ -1,3 +1,4 @@
+import 'package:cruise_blade/SCREENS/BookinPageScreen.dart';
 import 'package:cruise_blade/SCREENS/HomeScreen.dart';
 import 'package:cruise_blade/SCREENS/LandingPage.dart';
 import 'package:cruise_blade/SCREENS/LoginScreen.dart';

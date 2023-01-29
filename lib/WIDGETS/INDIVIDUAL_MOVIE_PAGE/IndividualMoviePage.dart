@@ -1,4 +1,5 @@
-import 'package:cruise_blade/WIDGETS/BigTextWidget.dart';
+import 'package:cruise_blade/SCREENS/BookinPageScreen.dart';
+import 'package:cruise_blade/WIDGETS/UNIVERSAL_WIDGETS/BigTextWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -15,7 +16,6 @@ class _IndiVidualMoviePageState extends State<IndiVidualMoviePage> {
   void indexChanger(int index) {
     setState(() {
       currIndex = index;
-      print(currIndex);
     });
   }
 
@@ -322,36 +322,47 @@ class _IndiVidualMoviePageState extends State<IndiVidualMoviePage> {
             ),
             Align(
               alignment: Alignment.bottomCenter,
-              child: Container(
-                margin: MediaQuery.of(context).orientation ==
-                        Orientation.portrait
-                    ? EdgeInsets.symmetric(
-                        horizontal: MediaQuery.of(context).size.width * 0.04,
-                      )
-                    : EdgeInsets.symmetric(
-                        horizontal: MediaQuery.of(context).size.width * 0.06,
-                        vertical: MediaQuery.of(context).size.height * 0.08,
-                      ),
-                height:
-                    MediaQuery.of(context).orientation == Orientation.portrait
-                        ? MediaQuery.of(context).size.height * 0.06
-                        : MediaQuery.of(context).size.height * 0.12,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Colors.blue.shade300,
-                      Colors.deepPurple.shade400,
-                    ],
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const BookingPageMainScreen();
+                      },
+                    ),
+                  );
+                },
+                child: Container(
+                  margin: MediaQuery.of(context).orientation ==
+                          Orientation.portrait
+                      ? EdgeInsets.symmetric(
+                          horizontal: MediaQuery.of(context).size.width * 0.04,
+                        )
+                      : EdgeInsets.symmetric(
+                          horizontal: MediaQuery.of(context).size.width * 0.06,
+                          vertical: MediaQuery.of(context).size.height * 0.08,
+                        ),
+                  height:
+                      MediaQuery.of(context).orientation == Orientation.portrait
+                          ? MediaQuery.of(context).size.height * 0.06
+                          : MediaQuery.of(context).size.height * 0.12,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Colors.blue,
+                        Colors.deepPurple.shade200,
+                      ],
+                    ),
+                    borderRadius: BorderRadius.circular(18),
                   ),
-                  borderRadius: BorderRadius.circular(18),
-                ),
-                child: BigTextWidget(
-                  fontSize: 22,
-                  text: "Book Now",
-                  color: Colors.white,
-                  textOverflow: TextOverflow.visible,
-                  fontWeight: FontWeight.w700,
+                  child: BigTextWidget(
+                    fontSize: 22,
+                    text: "Book Now",
+                    color: Colors.white,
+                    textOverflow: TextOverflow.visible,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
               ),
             ),

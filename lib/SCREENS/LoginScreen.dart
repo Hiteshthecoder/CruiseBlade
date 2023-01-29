@@ -1,6 +1,6 @@
 import 'package:cruise_blade/FEATURES/AUTH-SERVICES/EmailAndPasswordService.dart';
 import 'package:cruise_blade/SCREENS/SignUpScreen.dart';
-import 'package:cruise_blade/WIDGETS/BigTextWidget.dart';
+import 'package:cruise_blade/WIDGETS/UNIVERSAL_WIDGETS/BigTextWidget.dart';
 import 'package:cruise_blade/WIDGETS/SignInPageTextFields.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

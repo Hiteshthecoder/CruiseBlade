@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../FEATURES/AUTH-SERVICES/EmailAndPasswordService.dart';
-import '../WIDGETS/BigTextWidget.dart';
+import '../WIDGETS/UNIVERSAL_WIDGETS/BigTextWidget.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});

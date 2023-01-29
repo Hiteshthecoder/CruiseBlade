@@ -1,4 +1,4 @@
-import 'package:cruise_blade/WIDGETS/BigTextWidget.dart';
+import 'package:cruise_blade/WIDGETS/UNIVERSAL_WIDGETS/BigTextWidget.dart';
 import 'package:cruise_blade/WIDGETS/LANDING_PAGE_WIDGETS/UPCOMING_MOVIES_SECTION/UpcomingMovies.dart';
 import 'package:flutter/material.dart';
 

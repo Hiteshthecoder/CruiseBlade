@@ -1,4 +1,4 @@
-import 'package:cruise_blade/WIDGETS/BigTextWidget.dart';
+import 'package:cruise_blade/WIDGETS/UNIVERSAL_WIDGETS/BigTextWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 

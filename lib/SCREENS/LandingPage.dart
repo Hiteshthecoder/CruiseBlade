@@ -1,4 +1,4 @@
-import 'package:cruise_blade/WIDGETS/BigTextWidget.dart';
+import 'package:cruise_blade/WIDGETS/UNIVERSAL_WIDGETS/BigTextWidget.dart';
 import 'package:cruise_blade/WIDGETS/LANDING_PAGE_WIDGETS/MOVIES_CATEGORIES/Movies_Category_Widget.dart';
 import 'package:cruise_blade/WIDGETS/LANDING_PAGE_WIDGETS/NOW_PLAYING/NowPlayingMoviesWidget.dart';
 import 'package:cruise_blade/WIDGETS/LANDING_PAGE_WIDGETS/PREMIERE_CATEGORIES/Premiere_Movies_Widget.dart';
