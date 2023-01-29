@@ -1,8 +1,6 @@
-import 'package:cruise_blade/SCREENS/BookinPageScreen.dart';
 import 'package:cruise_blade/SCREENS/HomeScreen.dart';
 import 'package:cruise_blade/SCREENS/LandingPage.dart';
 import 'package:cruise_blade/SCREENS/LoginScreen.dart';
-import 'package:cruise_blade/WIDGETS/INDIVIDUAL_MOVIE_PAGE/IndividualMoviePage.dart';
 import 'package:cruise_blade/firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';

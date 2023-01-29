@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cruise_blade/WIDGETS/UNIVERSAL_WIDGETS/BigTextWidget.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -12,6 +14,31 @@ class BookingPageMainScreen extends StatefulWidget {
 }
 
 class _BookingPageMainScreenState extends State<BookingPageMainScreen> {
+  @override
+  void initState() {
+    super.initState();
+    getUser();
+  }
+
+  String userName = "";
+  String movieName = "";
+  Future<void> getUser() async {
+    DocumentSnapshot movieInfo = await FirebaseFirestore.instance
+        .collection('Users')
+        .doc("r2TriEDb5mh947fwzhTpYVQIrJA3")
+        .collection('movieDetails')
+        .doc("fsIjFlPp6Y5K7Ce5ATvv")
+        .get();
+    DocumentSnapshot userInfo = await FirebaseFirestore.instance
+        .collection('Users')
+        .doc("r2TriEDb5mh947fwzhTpYVQIrJA3")
+        .get();
+    setState(() {
+      movieName = (movieInfo.data() as Map<String, dynamic>)['movieInfo'][1];
+      userName = (userInfo.data() as Map<String, dynamic>)['userName'];
+    });
+  }
+
   Color selectedSeatColor = Colors.cyan;
   Color bookedSeatColor = Colors.grey;
   Color availableSeatColor = Colors.white;
@@ -82,10 +109,6 @@ class _BookingPageMainScreenState extends State<BookingPageMainScreen> {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    // Image.network(
-                    //   color: Colors.red,
-                    //   "https://static.vecteezy.com/system/resources/thumbnails/001/192/335/small/half-circle-line-sharp.png",
-                    // ),
                     SleekCircularSlider(
                       min: 0,
                       max: 100,
@@ -95,7 +118,7 @@ class _BookingPageMainScreenState extends State<BookingPageMainScreen> {
                           handlerSize: 0,
                         ),
                         infoProperties: InfoProperties(
-                          bottomLabelText: "Booking Status",
+                          bottomLabelText: movieName,
                           bottomLabelStyle: GoogleFonts.aboreto(
                             color: Colors.blue,
                             fontSize: 20,
