@@ -22,6 +22,7 @@ class _BookingPageMainScreenState extends State<BookingPageMainScreen> {
 
   String userName = "";
   String movieName = "";
+  var movieDates = [];
   Future<void> getUser() async {
     DocumentSnapshot movieInfo = await FirebaseFirestore.instance
         .collection('Users')
@@ -35,8 +36,11 @@ class _BookingPageMainScreenState extends State<BookingPageMainScreen> {
         .get();
     setState(() {
       movieName = (movieInfo.data() as Map<String, dynamic>)['movieInfo'][1];
+      movieDates = (movieInfo.data() as Map<String, dynamic>)['movieInfo'][2]
+          ['available-days'];
       userName = (userInfo.data() as Map<String, dynamic>)['userName'];
     });
+    print(movieDates);
   }
 
   Color selectedSeatColor = Colors.cyan;

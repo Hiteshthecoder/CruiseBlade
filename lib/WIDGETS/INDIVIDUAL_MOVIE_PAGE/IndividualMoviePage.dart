@@ -1,7 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cruise_blade/SCREENS/BookinPageScreen.dart';
 import 'package:cruise_blade/WIDGETS/UNIVERSAL_WIDGETS/BigTextWidget.dart';
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
 
 class IndiVidualMoviePage extends StatefulWidget {
   const IndiVidualMoviePage({super.key});
@@ -11,6 +11,35 @@ class IndiVidualMoviePage extends StatefulWidget {
 }
 
 class _IndiVidualMoviePageState extends State<IndiVidualMoviePage> {
+  @override
+  void initState() {
+    super.initState();
+    movieTImings();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  var movieDays = [];
+  var movieTimes = [];
+  Future<void> movieTImings() async {
+    DocumentSnapshot moviesDates = await FirebaseFirestore.instance
+        .collection('Users')
+        .doc("r2TriEDb5mh947fwzhTpYVQIrJA3")
+        .collection('movieDetails')
+        .doc("fsIjFlPp6Y5K7Ce5ATvv")
+        .get();
+
+    setState(() {
+      movieDays = (moviesDates.data() as Map<String, dynamic>)['movieInfo'][2]
+          ['available-days'];
+      movieTimes = (moviesDates.data() as Map<String, dynamic>)['movieInfo'][2]
+          ['available-time'];
+    });
+  }
+
   bool ticked = false;
   int currIndex = 0;
   void indexChanger(int index) {
@@ -19,43 +48,6 @@ class _IndiVidualMoviePageState extends State<IndiVidualMoviePage> {
     });
   }
 
-  final List movieDates = [
-    {
-      "Day": "Mon",
-      "Date": "1",
-      "Time": "1:00",
-    },
-    {
-      "Day": "Tues",
-      "Date": "2",
-      "Time": "2:00",
-    },
-    {
-      "Day": "Wed",
-      "Date": "3",
-      "Time": "3:00",
-    },
-    {
-      "Day": "Thu",
-      "Date": "4",
-      "Time": "4:00",
-    },
-    {
-      "Day": "Fri",
-      "Date": "5",
-      "Time": "5:00",
-    },
-    {
-      "Day": "Sat",
-      "Date": "6",
-      "Time": "6:00",
-    },
-    {
-      "Day": "Sun",
-      "Date": "7",
-      "Time": "7:00",
-    },
-  ];
   bool expandedMovieDiscription = false;
   void expansionChanger() {
     setState(() {
@@ -198,7 +190,7 @@ class _IndiVidualMoviePageState extends State<IndiVidualMoviePage> {
                         : MediaQuery.of(context).size.height * 0.26,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: movieDates.length,
+                      itemCount: movieDays.length,
                       itemBuilder: (context, index) {
                         return GestureDetector(
                           onTap: () {
@@ -236,7 +228,7 @@ class _IndiVidualMoviePageState extends State<IndiVidualMoviePage> {
                               children: [
                                 BigTextWidget(
                                   fontSize: 18,
-                                  text: movieDates[index]['Day'],
+                                  text: movieDays[index],
                                   color: Colors.white,
                                   textOverflow: TextOverflow.visible,
                                   fontWeight: FontWeight.w600,
@@ -251,7 +243,7 @@ class _IndiVidualMoviePageState extends State<IndiVidualMoviePage> {
                                 ),
                                 BigTextWidget(
                                   fontSize: 20,
-                                  text: movieDates[index]['Date'],
+                                  text: "1",
                                   color: Colors.white,
                                   textOverflow: TextOverflow.visible,
                                   fontWeight: FontWeight.w700,
@@ -278,7 +270,7 @@ class _IndiVidualMoviePageState extends State<IndiVidualMoviePage> {
                         : MediaQuery.of(context).size.height * 0.09,
                     decoration: const BoxDecoration(),
                     child: ListView.builder(
-                      itemCount: movieDates.length,
+                      itemCount: movieTimes.length,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         return Container(
@@ -308,7 +300,7 @@ class _IndiVidualMoviePageState extends State<IndiVidualMoviePage> {
                                 ),
                           child: BigTextWidget(
                             fontSize: 18,
-                            text: movieDates[index]['Time'],
+                            text: movieTimes[index],
                             color: Colors.white,
                             textOverflow: TextOverflow.visible,
                             fontWeight: FontWeight.w500,

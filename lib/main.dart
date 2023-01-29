@@ -1,5 +1,4 @@
 import 'package:cruise_blade/SCREENS/HomeScreen.dart';
-import 'package:cruise_blade/SCREENS/LandingPage.dart';
 import 'package:cruise_blade/SCREENS/LoginScreen.dart';
 import 'package:cruise_blade/firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -49,7 +48,9 @@ class MyApp extends StatelessWidget {
             child: CircularProgressIndicator(),
           );
         }
-        return const MaterialApp(home: LoginScreen());
+        return const MaterialApp(
+          home: LoginScreen(),
+        );
       },
     );
   }

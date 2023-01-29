@@ -21,7 +21,7 @@ class moviedata {
     return movieName;
   }
 
-  static Future getMovieDates() async {
+  static Future<List> getMovieTimings() async {
     DocumentSnapshot moviesDates = await FirebaseFirestore.instance
         .collection('Users')
         .doc("r2TriEDb5mh947fwzhTpYVQIrJA3")
@@ -33,6 +33,6 @@ class moviedata {
     List movieTimes =
         (moviesDates as Map<String, dynamic>)['movieInfo'][2]['available-time'];
 
-    return {movieDates, movieTimes};
+    return movieDates;
   }
 }
