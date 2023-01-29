@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
               theme: ThemeData(
                 primarySwatch: Colors.blue,
               ),
-              home: const IndiVidualMoviePage(),
+              home: const HomeScreen(),
             );
           }
           if (snapshot.hasError) {
