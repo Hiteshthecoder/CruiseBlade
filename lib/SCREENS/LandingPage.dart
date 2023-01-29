@@ -25,7 +25,7 @@ class LandingPage extends StatelessWidget {
             begin: Alignment.topCenter,
             colors: [
               Colors.blue.withOpacity(0.2),
-              Colors.deepPurple.shade200,
+              Colors.deepPurple.shade100,
             ],
           ),
         ),

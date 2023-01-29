@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
     LoginScreen(),
     SignUpScreen(),
     LoginScreen(),
-    SignUpScreen()
+    SignUpScreen(),
   ];
   void pageChanger(int index) {
     setState(() {
