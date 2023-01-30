@@ -16,6 +16,11 @@ class _MoviesCategoryWidgetState extends State<MoviesCategoryWidget> {
     fetchMoviesCategories();
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   List movieCategories = [];
   Future<void> fetchMoviesCategories() async {
     DocumentSnapshot moviesData = await FirebaseFirestore.instance

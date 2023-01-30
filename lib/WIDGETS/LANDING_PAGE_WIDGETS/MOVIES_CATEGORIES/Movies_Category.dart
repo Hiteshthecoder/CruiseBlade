@@ -7,19 +7,6 @@ class MovieCategories extends StatelessWidget {
     super.key,
     required this.movieType,
   });
-  static List movieTypes() {
-    List movieCategoies = [
-      "Action",
-      "Drama",
-      "Horror",
-      "Thriller",
-      "Comedy",
-      "Fantasy",
-      "Anime",
-      "Cartoon"
-    ];
-    return movieCategoies;
-  }
 
   String movieType;
   @override
