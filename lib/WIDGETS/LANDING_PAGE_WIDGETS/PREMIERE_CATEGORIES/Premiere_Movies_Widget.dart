@@ -1,8 +1,34 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cruise_blade/WIDGETS/LANDING_PAGE_WIDGETS/PREMIERE_CATEGORIES/Premiere_Movies.dart';
 import 'package:flutter/material.dart';
 
-class PremiereMoviesWidget extends StatelessWidget {
+class PremiereMoviesWidget extends StatefulWidget {
   const PremiereMoviesWidget({super.key});
+
+  @override
+  State<PremiereMoviesWidget> createState() => _PremiereMoviesWidgetState();
+}
+
+class _PremiereMoviesWidgetState extends State<PremiereMoviesWidget> {
+  @override
+  void initState() {
+    super.initState();
+    fetchPremiereMovies();
+  }
+
+  List premiereMoviesList = [];
+  Future<void> fetchPremiereMovies() async {
+    DocumentSnapshot premiereMovies = await FirebaseFirestore.instance
+        .collection('Users')
+        .doc("r2TriEDb5mh947fwzhTpYVQIrJA3")
+        .collection('movieDetails')
+        .doc("fsIjFlPp6Y5K7Ce5ATvv")
+        .get();
+    setState(() {
+      premiereMoviesList =
+          (premiereMovies.data() as Map<String, dynamic>)['moviesInfo'];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +46,11 @@ class PremiereMoviesWidget extends StatelessWidget {
       decoration: const BoxDecoration(),
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: 9,
+        itemCount: premiereMoviesList.length,
         itemBuilder: (context, index) {
-          return const PremiereMovies();
+          return PremiereMovies(
+            movieImage: premiereMoviesList[index]['movieImage'],
+          );
         },
       ),
     );

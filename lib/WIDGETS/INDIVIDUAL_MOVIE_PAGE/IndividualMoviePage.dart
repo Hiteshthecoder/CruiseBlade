@@ -17,15 +17,10 @@ class _IndiVidualMoviePageState extends State<IndiVidualMoviePage> {
     movieTImings();
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  var movieDays = [];
-  var movieTimes = [];
+  var moviesDays = [];
+  var movieTimings = [];
   Future<void> movieTImings() async {
-    DocumentSnapshot moviesDates = await FirebaseFirestore.instance
+    DocumentSnapshot moviesBioData = await FirebaseFirestore.instance
         .collection('Users')
         .doc("r2TriEDb5mh947fwzhTpYVQIrJA3")
         .collection('movieDetails')
@@ -33,10 +28,10 @@ class _IndiVidualMoviePageState extends State<IndiVidualMoviePage> {
         .get();
 
     setState(() {
-      movieDays = (moviesDates.data() as Map<String, dynamic>)['movieInfo'][2]
-          ['available-days'];
-      movieTimes = (moviesDates.data() as Map<String, dynamic>)['movieInfo'][2]
-          ['available-time'];
+      moviesDays = (moviesBioData.data() as Map<String, dynamic>)['moviesInfo']
+          [1]['movieDays'];
+      movieTimings = (moviesBioData.data()
+          as Map<String, dynamic>)['moviesInfo'][0]['movieTimes'];
     });
   }
 
@@ -190,7 +185,7 @@ class _IndiVidualMoviePageState extends State<IndiVidualMoviePage> {
                         : MediaQuery.of(context).size.height * 0.26,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: movieDays.length,
+                      itemCount: moviesDays.length,
                       itemBuilder: (context, index) {
                         return GestureDetector(
                           onTap: () {
@@ -228,7 +223,7 @@ class _IndiVidualMoviePageState extends State<IndiVidualMoviePage> {
                               children: [
                                 BigTextWidget(
                                   fontSize: 18,
-                                  text: movieDays[index],
+                                  text: moviesDays[index],
                                   color: Colors.white,
                                   textOverflow: TextOverflow.visible,
                                   fontWeight: FontWeight.w600,
@@ -270,7 +265,7 @@ class _IndiVidualMoviePageState extends State<IndiVidualMoviePage> {
                         : MediaQuery.of(context).size.height * 0.09,
                     decoration: const BoxDecoration(),
                     child: ListView.builder(
-                      itemCount: movieTimes.length,
+                      itemCount: movieTimings.length,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         return Container(
@@ -300,7 +295,7 @@ class _IndiVidualMoviePageState extends State<IndiVidualMoviePage> {
                                 ),
                           child: BigTextWidget(
                             fontSize: 18,
-                            text: movieTimes[index],
+                            text: movieTimings[index],
                             color: Colors.white,
                             textOverflow: TextOverflow.visible,
                             fontWeight: FontWeight.w500,

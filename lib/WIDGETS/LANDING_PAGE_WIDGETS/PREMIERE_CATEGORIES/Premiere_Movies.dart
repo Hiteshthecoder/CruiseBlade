@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 
-class PremiereMovies extends StatelessWidget {
-  const PremiereMovies({
+class PremiereMovies extends StatefulWidget {
+  PremiereMovies({
     super.key,
+    required this.movieImage,
   });
+  String movieImage;
 
+  @override
+  State<PremiereMovies> createState() => _PremiereMoviesState();
+}
+
+class _PremiereMoviesState extends State<PremiereMovies> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,11 +27,11 @@ class PremiereMovies extends StatelessWidget {
           : MediaQuery.of(context).size.width * 0.23,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        image: const DecorationImage(
+        image: DecorationImage(
           image: NetworkImage(
-            "https://images.saymedia-content.com/.image/t_share/MTc0NDgzOTg0NTgxOTI4NTgy/aquaman-review-and-trailer-did-it-try-too-hard.jpg",
+            widget.movieImage,
           ),
-          fit: BoxFit.fill,
+          fit: BoxFit.cover,
         ),
       ),
     );
