@@ -1,4 +1,4 @@
-import 'package:cruise_blade/WIDGETS/SignUpPageTextFields.dart';
+import 'package:cruise_blade/WIDGETS/TEXT_FIELDS/SignUpPageTextFields.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 

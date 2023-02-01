@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cruise_blade/FEATURES/MODEL/UserModel.dart' as UserModel;
+import 'package:cruise_blade/FEATURES/MODELS/UserModel.dart' as UserModel;
 import 'package:cruise_blade/SCREENS/HomeScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

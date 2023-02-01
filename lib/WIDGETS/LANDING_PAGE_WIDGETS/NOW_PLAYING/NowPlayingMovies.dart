@@ -1,9 +1,18 @@
 import 'package:cruise_blade/WIDGETS/INDIVIDUAL_MOVIE_PAGE/IndividualMoviePage.dart';
 import 'package:flutter/material.dart';
 
-class NowPlayingMovies extends StatelessWidget {
-  const NowPlayingMovies({super.key});
+class NowPlayingMovies extends StatefulWidget {
+  NowPlayingMovies({
+    super.key,
+    required this.movieImage,
+  });
+  String movieImage;
 
+  @override
+  State<NowPlayingMovies> createState() => _NowPlayingMoviesState();
+}
+
+class _NowPlayingMoviesState extends State<NowPlayingMovies> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -29,11 +38,11 @@ class NowPlayingMovies extends StatelessWidget {
             : MediaQuery.of(context).size.width * 0.16,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          image: const DecorationImage(
+          image: DecorationImage(
             image: NetworkImage(
-              "https://images.saymedia-content.com/.image/t_share/MTc0NDgzOTg0NTgxOTI4NTgy/aquaman-review-and-trailer-did-it-try-too-hard.jpg",
+              widget.movieImage,
             ),
-            fit: BoxFit.fill,
+            fit: BoxFit.cover,
           ),
         ),
       ),

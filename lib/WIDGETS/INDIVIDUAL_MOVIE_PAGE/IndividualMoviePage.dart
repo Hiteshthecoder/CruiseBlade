@@ -14,32 +14,35 @@ class _IndiVidualMoviePageState extends State<IndiVidualMoviePage> {
   @override
   void initState() {
     super.initState();
-    movieTImings();
+    movieTimingsData();
   }
 
-  var moviesDays = [];
-  var movieTimings = [];
-  Future<void> movieTImings() async {
+  var movieTimingDataList = [];
+  List newPremiereMOviesByApi = [];
+  String movieName = "";
+  int movieAvailableDays = 0;
+  String movieDay = "";
+  int movieAvailableTimes = 0;
+  Future<void> movieTimingsData() async {
     DocumentSnapshot moviesBioData = await FirebaseFirestore.instance
         .collection('Users')
         .doc("r2TriEDb5mh947fwzhTpYVQIrJA3")
         .collection('movieDetails')
         .doc("fsIjFlPp6Y5K7Ce5ATvv")
         .get();
-
     setState(() {
-      moviesDays = (moviesBioData.data() as Map<String, dynamic>)['moviesInfo']
-          [1]['movieDays'];
-      movieTimings = (moviesBioData.data()
-          as Map<String, dynamic>)['moviesInfo'][0]['movieTimes'];
+      movieTimingDataList =
+          (moviesBioData.data() as Map<String, dynamic>)['UniversalMovieData']
+              ['NowPlayingMoviesData'];
     });
   }
 
   bool ticked = false;
-  int currIndex = 0;
-  void indexChanger(int index) {
+
+  void fetchMovieInformation(List list, int index) {
     setState(() {
-      currIndex = index;
+      movieAvailableDays = list.length;
+      movieAvailableTimes = list.length;
     });
   }
 
@@ -184,13 +187,11 @@ class _IndiVidualMoviePageState extends State<IndiVidualMoviePage> {
                         ? MediaQuery.of(context).size.height * 0.14
                         : MediaQuery.of(context).size.height * 0.26,
                     child: ListView.builder(
+                      itemCount: 6,
                       scrollDirection: Axis.horizontal,
-                      itemCount: moviesDays.length,
                       itemBuilder: (context, index) {
                         return GestureDetector(
-                          onTap: () {
-                            indexChanger(index);
-                          },
+                          onTap: () {},
                           child: Container(
                             alignment: Alignment.center,
                             margin: MediaQuery.of(context).orientation ==
@@ -223,7 +224,7 @@ class _IndiVidualMoviePageState extends State<IndiVidualMoviePage> {
                               children: [
                                 BigTextWidget(
                                   fontSize: 18,
-                                  text: moviesDays[index],
+                                  text: "6",
                                   color: Colors.white,
                                   textOverflow: TextOverflow.visible,
                                   fontWeight: FontWeight.w600,
@@ -265,7 +266,7 @@ class _IndiVidualMoviePageState extends State<IndiVidualMoviePage> {
                         : MediaQuery.of(context).size.height * 0.09,
                     decoration: const BoxDecoration(),
                     child: ListView.builder(
-                      itemCount: movieTimings.length,
+                      itemCount: 5,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         return Container(
@@ -295,7 +296,7 @@ class _IndiVidualMoviePageState extends State<IndiVidualMoviePage> {
                                 ),
                           child: BigTextWidget(
                             fontSize: 18,
-                            text: movieTimings[index],
+                            text: "Hello",
                             color: Colors.white,
                             textOverflow: TextOverflow.visible,
                             fontWeight: FontWeight.w500,

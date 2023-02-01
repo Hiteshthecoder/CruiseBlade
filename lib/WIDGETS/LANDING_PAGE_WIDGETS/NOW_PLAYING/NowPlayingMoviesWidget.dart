@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cruise_blade/WIDGETS/LANDING_PAGE_WIDGETS/NOW_PLAYING/NowPlayingMovies.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +10,27 @@ class NowPlayingMoviesWidget extends StatefulWidget {
 }
 
 class _NowPlayingMoviesWidgetState extends State<NowPlayingMoviesWidget> {
+  @override
+  void initState() {
+    super.initState();
+    getMovieIMage();
+  }
+
+  var moviesMataData = [];
+  Future<void> getMovieIMage() async {
+    DocumentSnapshot moviesData = await FirebaseFirestore.instance
+        .collection("Users")
+        .doc("r2TriEDb5mh947fwzhTpYVQIrJA3")
+        .collection("movieDetails")
+        .doc("fsIjFlPp6Y5K7Ce5ATvv")
+        .get();
+    setState(() {
+      moviesMataData =
+          (moviesData.data() as Map<String, dynamic>)['UniversalMovieData']
+              ['NowPlayingMoviesData'];
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,9 +47,11 @@ class _NowPlayingMoviesWidgetState extends State<NowPlayingMoviesWidget> {
       decoration: const BoxDecoration(),
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: 9,
+        itemCount: moviesMataData.length,
         itemBuilder: (context, index) {
-          return const NowPlayingMovies();
+          return NowPlayingMovies(
+            movieImage: moviesMataData[index]['MovieImage'],
+          );
         },
       ),
     );
